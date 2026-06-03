@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import { Contact } from '../models/Contact';
 import { contactRateLimiter } from '../middleware/rateLimit';
 import { sendContactEmail } from '../utils/email';
+import { ensureDbConnection } from '../utils/db';
 
 const router = Router();
 
@@ -23,8 +24,9 @@ router.post('/', contactRateLimiter, async (req: Request, res: Response): Promis
       return;
     }
 
-    // Attempt to save to database (graceful — don't fail if DB is unavailable)
+    // Attempt lazy database connection and save (graceful — don't fail if DB is unavailable)
     let savedContact = null;
+    await ensureDbConnection();
     const isDbConnected = mongoose.connection.readyState === 1; // 1 = connected
 
     if (isDbConnected) {
