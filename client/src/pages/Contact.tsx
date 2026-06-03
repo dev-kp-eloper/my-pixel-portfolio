@@ -12,7 +12,7 @@ export const Contact: React.FC<ContactProps> = ({ onBack, hideAvatar = false }) 
   const [statusMsg, setStatusMsg] = useState<string | null>(null);
   const [isError, setIsError] = useState(false);
 
-  const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+  const apiBaseUrl = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:5000' : '');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
