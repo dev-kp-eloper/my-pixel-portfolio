@@ -1,9 +1,7 @@
 import { Router, Request, Response } from 'express';
-import mongoose from 'mongoose';
-import { Contact } from '../models/Contact';
 import { contactRateLimiter } from '../middleware/rateLimit';
 import { sendContactEmail } from '../utils/email';
-import { ensureDbConnection } from '../utils/db';
+import { trySaveContact } from '../utils/db';
 
 const router = Router();
 
@@ -24,34 +22,22 @@ router.post('/', contactRateLimiter, async (req: Request, res: Response): Promis
       return;
     }
 
-    // Attempt lazy database connection and save (graceful — don't fail if DB is unavailable)
-    let savedContact = null;
-    await ensureDbConnection();
-    const isDbConnected = mongoose.connection.readyState === 1; // 1 = connected
+    // Fire-and-forget: attempt DB save in background (non-blocking)
+    trySaveContact(name, email, message).catch((err) => {
+      console.warn('Background DB save failed (non-critical):', err);
+    });
 
-    if (isDbConnected) {
-      try {
-        const newContact = new Contact({ name, email, message });
-        savedContact = await newContact.save();
-        console.log('Contact saved to database:', savedContact._id);
-      } catch (dbError) {
-        console.warn('Database save failed (non-critical):', dbError);
-      }
-    } else {
-      console.warn('MongoDB not connected (readyState:', mongoose.connection.readyState, '). Skipping DB save.');
-    }
-
-    // Always dispatch email notification — this is the critical path
+    // Fire-and-forget: send email notification in background (non-blocking)
     sendContactEmail(name, email, message).catch((err) => {
       console.error('Background email dispatch failed:', err);
     });
 
+    // Respond immediately — don't wait for DB or email
     res.status(201).json({
       message: 'Guild invitation successfully sent! Check quest log.',
       data: {
-        id: savedContact?._id || null,
         name,
-        createdAt: savedContact?.createdAt || new Date()
+        createdAt: new Date()
       }
     });
   } catch (error) {
