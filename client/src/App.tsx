@@ -207,7 +207,7 @@ export default function App() {
       {/* Top HUD Bar */}
       <header className="gb-topbar">
         <div className="gb-topbar-left" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span className="gb-topbar-logo" style={{ fontSize: '10px', whiteSpace: 'nowrap' }}>★ DEVESH.EXE</span>
+          <span className={`gb-topbar-logo ${activeScreen !== '/' ? 'gb-hide-on-mobile' : ''}`} style={{ fontSize: '10px', whiteSpace: 'nowrap' }}>★ DEVESH.EXE</span>
           {activeScreen !== '/' ? (
             <div className="gb-topbar-heading-container" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
               <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: '7px', color: 'var(--gb-light)', opacity: 0.9, marginLeft: '8px', letterSpacing: '0.5px' }}>

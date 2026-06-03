@@ -296,42 +296,105 @@ button {
 /* ==============================
    SCROLLBAR
    ============================== */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track  { background: var(--gb-darkest); }
-::-webkit-scrollbar-thumb  { background: var(--gb-dark); border: 1px solid var(--gb-darkest); }
-::-webkit-scrollbar-thumb:hover { background: var(--gb-medium); }
+@media (min-width: 1024px) {
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track  { background: var(--gb-darkest); }
+  ::-webkit-scrollbar-thumb  { background: var(--gb-dark); border: 1px solid var(--gb-darkest); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--gb-medium); }
+}
 
 /* ==============================
    RESPONSIVE — MOBILE
    ============================== */
 @media (max-width: 640px) {
+  /* Thin horizontal scrollbar for mobile navigation discoverability */
+  .gb-sidenav::-webkit-scrollbar {
+    height: 4px;
+  }
+  .gb-sidenav::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.15);
+  }
+  .gb-sidenav::-webkit-scrollbar-thumb {
+    background: var(--gb-dark);
+  }
+
   .gb-sidenav {
     width: 100%;
     flex-direction: row;
     flex-wrap: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
-    padding: 6px;
+    padding: 4px 6px;
     border-right: none;
     border-bottom: 4px solid var(--gb-dark);
+    -webkit-overflow-scrolling: touch;
+    gap: 2px;
   }
 
   .gb-sidenav-title,
   .gb-sidenav-hint { display: none; }
 
   .gb-navitem {
-    padding: 6px 10px;
-    font-size: 6px;
+    width: auto;
+    padding: 8px 12px;
+    font-size: 8px;
+    gap: 4px;
     flex-shrink: 0;
     border-left: none;
-    border-bottom: 2px solid transparent;
+    border-bottom: 3px solid transparent;
     white-space: nowrap;
   }
 
   .gb-navitem-active {
     border-left: none;
-    border-bottom: 2px solid var(--gb-medium);
+    border-bottom: 3px solid var(--gb-medium);
+  }
+
+  .gb-navitem-arrow {
+    font-size: 8px;
+    width: 8px;
   }
 
   .gb-layout { flex-direction: column; }
+
+  /* Topbar Mobile Scaling */
+  .gb-topbar {
+    padding: 6px 12px;
+  }
+  .gb-topbar-sub {
+    display: none;
+  }
+  .gb-topbar-left {
+    gap: 4px;
+  }
+  .gb-topbar-logo {
+    font-size: 9px;
+  }
+  .gb-topbar-status {
+    font-size: 8px;
+    gap: 6px;
+  }
+
+  /* Statusbar Mobile Scaling (Hide keyboard hints on touch devices) */
+  .gb-statusbar {
+    padding: 6px 12px;
+    font-size: 7px;
+  }
+  .gb-statusbar span {
+    display: none;
+  }
+  .gb-statusbar span:last-child {
+    display: inline;
+  }
 }
+
+@media (max-width: 480px) {
+  /* Hide the DEVESH.EXE title on sub-screens to make room for page title */
+  .gb-topbar-heading-container {
+    margin-left: 0 !important;
+  }
+  .gb-hide-on-mobile {
+    display: none !important;
+  }
+}
+
