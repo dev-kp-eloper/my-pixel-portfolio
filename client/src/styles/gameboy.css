@@ -1,0 +1,337 @@
+/* =====================================================
+   GAME BOY COLOR — DESIGN #5 PALETTE
+   Body/Casing: Olive/Army Green #8B956D
+   LCD Panel:   Warm light green #CADC9F
+   Panel bg:    #BFD07A (medium)
+   Dark text:   #2C3A1E (near-black green)
+   Accent:      #4A5E2A (mid-dark)
+   ===================================================== */
+:root {
+  /* Core 4-color GB LCD palette (Design #5) */
+  --gb-darkest: #2C3A1E;    /* near-black, text & borders */
+  --gb-dark:    #4A5E2A;    /* dark green, secondary text */
+  --gb-medium:  #8BAC4A;    /* medium green, accents */
+  --gb-light:   #CADC9F;    /* light warm green, primary bg */
+  --gb-accent:  #E8F0C8;    /* very light, panel highlight */
+
+  /* Olive frame colors (Design #5 casing) */
+  --gb-frame-bg:    #8B956D;
+  --gb-frame-dark:  #6B754D;
+  --gb-frame-light: #ABB58D;
+}
+
+/* Base resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background-color: var(--gb-frame-bg);
+  color: var(--gb-darkest);
+  font-family: 'VT323', monospace;
+  font-size: 1.15rem;
+  line-height: 1.4;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* ==============================
+   FULL SCREEN APP LAYOUT
+   ============================== */
+.fullscreen-boot {
+  position: fixed;
+  inset: 0;
+  background-color: var(--gb-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: clip;
+}
+
+.fullscreen-app {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--gb-frame-bg);
+  overflow: hidden;
+}
+
+/* ==============================
+   TOP HUD BAR
+   ============================== */
+.gb-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--gb-darkest);
+  color: var(--gb-light);
+  padding: 7px 20px;
+  border-bottom: 4px solid var(--gb-dark);
+  flex-shrink: 0;
+  z-index: 20;
+}
+
+.gb-topbar-left {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.gb-topbar-logo {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  color: var(--gb-medium);
+  letter-spacing: 1px;
+}
+
+.gb-topbar-sub {
+  font-family: 'VT323', monospace;
+  font-size: 16px;
+  color: var(--gb-dark);
+  letter-spacing: 1px;
+}
+
+.gb-topbar-status {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+}
+
+.gb-led {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #440000;
+  border: 1px solid #220000;
+}
+
+.gb-led.active {
+  background-color: #ff4444;
+  box-shadow: 0 0 6px #ff4444;
+}
+
+.gb-topbar-hp { color: #ff8888; }
+.gb-topbar-xp { color: var(--gb-medium); }
+
+/* ==============================
+   MAIN LAYOUT: SIDEBAR + CONTENT
+   ============================== */
+.gb-layout {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0; /* critical: allows flex children to shrink */
+}
+
+/* Side Navigation */
+.gb-sidenav {
+  width: 210px;
+  flex-shrink: 0;
+  background-color: var(--gb-darkest);
+  border-right: 4px solid var(--gb-dark);
+  display: flex;
+  flex-direction: column;
+  padding: 12px 0;
+  overflow-y: auto;
+}
+
+.gb-sidenav-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  color: var(--gb-dark);
+  padding: 0 14px 10px 14px;
+  border-bottom: 2px solid var(--gb-dark);
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+
+.gb-navitem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--gb-dark);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.08s, color 0.08s;
+  letter-spacing: 0.5px;
+  border-left: 3px solid transparent;
+}
+
+.gb-navitem:hover {
+  background-color: rgba(74, 94, 42, 0.35);
+  color: var(--gb-light);
+}
+
+.gb-navitem-active {
+  background-color: rgba(74, 94, 42, 0.25);
+  color: var(--gb-light);
+  border-left: 3px solid var(--gb-medium);
+}
+
+.gb-navitem-arrow {
+  font-size: 10px;
+  width: 14px;
+  color: var(--gb-medium);
+  opacity: 0;
+  transition: opacity 0.08s;
+}
+
+.gb-navitem:hover .gb-navitem-arrow,
+.gb-navitem-active .gb-navitem-arrow {
+  opacity: 1;
+}
+
+.gb-sidenav-hint {
+  margin-top: auto;
+  padding: 10px 14px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 6px;
+  color: var(--gb-dark);
+  line-height: 2;
+  border-top: 2px solid var(--gb-dark);
+}
+
+/* Content area */
+.gb-content {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--gb-light);
+  min-width: 0; /* prevent flex overflow */
+}
+
+/* Bottom status bar */
+.gb-statusbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background-color: var(--gb-darkest);
+  border-top: 3px solid var(--gb-dark);
+  padding: 5px 16px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  color: var(--gb-dark);
+  flex-shrink: 0;
+}
+
+/* ==============================
+   TYPOGRAPHY
+   ============================== */
+.press-start-font,
+button {
+  font-family: 'Press Start 2P', monospace;
+}
+
+/* ==============================
+   SCANLINES
+   ============================== */
+.scanlines::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(44, 58, 30, 0.08) 2px,
+    rgba(44, 58, 30, 0.08) 4px
+  );
+  z-index: 9000;
+  pointer-events: none;
+}
+
+/* ==============================
+   ANIMATIONS
+   ============================== */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.blink      { animation: blink 1s step-end infinite; }
+.blink-fast { animation: blink 0.4s step-end infinite; }
+
+@keyframes screenWipe {
+  0%   { transform: scaleY(0); opacity: 1; }
+  50%  { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(0); opacity: 1; }
+}
+
+.screen-wipe {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--gb-darkest);
+  z-index: 9999;
+  transform-origin: top center;
+  transform: scaleY(0);
+  pointer-events: none;
+}
+
+.screen-wipe.active {
+  animation: screenWipe 0.4s ease-in-out forwards;
+}
+
+/* ==============================
+   SCROLLBAR
+   ============================== */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track  { background: var(--gb-darkest); }
+::-webkit-scrollbar-thumb  { background: var(--gb-dark); border: 1px solid var(--gb-darkest); }
+::-webkit-scrollbar-thumb:hover { background: var(--gb-medium); }
+
+/* ==============================
+   RESPONSIVE — MOBILE
+   ============================== */
+@media (max-width: 640px) {
+  .gb-sidenav {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 6px;
+    border-right: none;
+    border-bottom: 4px solid var(--gb-dark);
+  }
+
+  .gb-sidenav-title,
+  .gb-sidenav-hint { display: none; }
+
+  .gb-navitem {
+    padding: 6px 10px;
+    font-size: 6px;
+    flex-shrink: 0;
+    border-left: none;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+  }
+
+  .gb-navitem-active {
+    border-left: none;
+    border-bottom: 2px solid var(--gb-medium);
+  }
+
+  .gb-layout { flex-direction: column; }
+}

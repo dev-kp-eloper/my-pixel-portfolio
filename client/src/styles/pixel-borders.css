@@ -1,0 +1,417 @@
+/* ==============================
+   PIXEL BOX COMPONENTS — Design #5 palette
+   ============================== */
+.pixel-box {
+  background-color: #CADC9F;
+  border: 4px solid #2C3A1E;
+  box-shadow:
+    inset -4px -4px 0 #8BAC4A,
+    inset 4px 4px 0 #E8F0C8,
+    4px 4px 0 #2C3A1E;
+  padding: 16px;
+  color: #2C3A1E;
+}
+
+.pixel-box-dark {
+  background-color: #2C3A1E;
+  border: 4px solid #4A5E2A;
+  box-shadow:
+    inset -4px -4px 0 rgba(0,0,0,0.35),
+    inset 4px 4px 0 #4A5E2A,
+    4px 4px 0 rgba(0,0,0,0.4);
+  padding: 16px;
+  color: #CADC9F;
+}
+
+.pixel-box-light {
+  background-color: #E8F0C8;
+  border: 4px solid #2C3A1E;
+  box-shadow:
+    inset -4px -4px 0 #CADC9F,
+    inset 4px 4px 0 #ffffff,
+    4px 4px 0 #2C3A1E;
+  padding: 16px;
+  color: #2C3A1E;
+}
+
+/* Chunky retro buttons */
+.pixel-btn {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.6rem;
+  background-color: #CADC9F;
+  border: 4px solid #2C3A1E;
+  box-shadow:
+    inset -4px -4px 0 #8BAC4A,
+    inset 4px 4px 0 #E8F0C8,
+    3px 3px 0 #2C3A1E;
+  padding: 8px 16px;
+  color: #2C3A1E;
+  cursor: pointer;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+  text-decoration: none;
+}
+
+.pixel-btn:active {
+  box-shadow: inset 4px 4px 0 #8BAC4A, 1px 1px 0 #2C3A1E;
+  transform: translate(2px, 2px);
+}
+
+.pixel-btn:hover { background-color: #E8F0C8; }
+
+.pixel-btn-dark {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.6rem;
+  background-color: #2C3A1E;
+  border: 4px solid #4A5E2A;
+  box-shadow:
+    inset -4px -4px 0 rgba(0,0,0,0.4),
+    inset 4px 4px 0 #4A5E2A,
+    3px 3px 0 rgba(0,0,0,0.4);
+  padding: 8px 16px;
+  color: #CADC9F;
+  cursor: pointer;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+  text-decoration: none;
+}
+
+.pixel-btn-dark:active {
+  box-shadow: inset 4px 4px 0 rgba(0,0,0,0.4), 1px 1px 0 rgba(0,0,0,0.4);
+  transform: translate(2px, 2px);
+}
+
+.pixel-btn-dark:hover { background-color: #4A5E2A; }
+
+/* ==============================
+   GENERIC PAGE LAYOUT
+   ============================== */
+.page-screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: #CADC9F;
+  overflow: hidden;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #2C3A1E;
+  color: #8BAC4A;
+  padding: 10px 20px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  border-bottom: 4px solid #4A5E2A;
+  flex-shrink: 0;
+}
+
+.page-back-btn {
+  background: transparent;
+  border: 2px solid #4A5E2A;
+  color: #8BAC4A;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+.page-back-btn:hover {
+  background-color: #4A5E2A;
+  color: #CADC9F;
+}
+
+.page-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.page-footer {
+  padding: 6px 20px;
+  background-color: #2C3A1E;
+  border-top: 2px solid #4A5E2A;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  color: #4A5E2A;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* ==============================
+   SECTION LABEL
+   ============================== */
+.section-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: #4A5E2A;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #8BAC4A;
+}
+
+/* ==============================
+   CONTENT GRIDS
+   ============================== */
+.content-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.content-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 1100px) {
+  .content-grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 700px) {
+  .content-grid-2,
+  .content-grid-3 { grid-template-columns: 1fr; }
+}
+
+/* ==============================
+   HERO PAGE
+   ============================== */
+.hero-screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: #CADC9F;
+  overflow: hidden;
+}
+
+.hero-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 270px 1fr 230px;
+  gap: 18px;
+  padding: 18px;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.hero-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow: auto;
+}
+
+.hero-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  background-color: #2C3A1E;
+  border: 3px solid #4A5E2A;
+  min-height: 90px;
+}
+
+.hero-avatar-sprite {
+  transform: scale(2);
+  image-rendering: pixelated;
+}
+
+.hero-name {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: #2C3A1E;
+  line-height: 1.8;
+  word-break: break-all;
+}
+
+.hero-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  color: #4A5E2A;
+  margin-top: 4px;
+}
+
+.hero-divider {
+  height: 3px;
+  background-color: #2C3A1E;
+  margin: 8px 0;
+}
+
+.hero-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+  color: #2C3A1E;
+}
+
+.hero-stat-row span {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  color: #4A5E2A;
+  margin-right: 6px;
+}
+
+.hero-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow-y: auto;
+}
+
+.hero-intro-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: #4A5E2A;
+  border-bottom: 2px solid #8BAC4A;
+  padding-bottom: 8px;
+}
+
+.hero-intro-text {
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  line-height: 1.45;
+  color: #2C3A1E;
+}
+
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.hero-tag {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  background-color: #8BAC4A;
+  color: #2C3A1E;
+  border: 2px solid #2C3A1E;
+  padding: 4px 8px;
+}
+
+.hero-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+}
+
+.hero-nav-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  color: #CADC9F;
+  border-bottom: 2px solid #4A5E2A;
+  padding-bottom: 8px;
+}
+
+.hero-nav-contact {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 2px solid #4A5E2A;
+}
+
+.hero-link {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: #8BAC4A;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.hero-link:hover { color: #CADC9F; }
+
+/* Walking character strip */
+.hero-ground {
+  position: relative;
+  height: 56px;
+  background-color: #8BAC4A;
+  border-top: 4px solid #2C3A1E;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.hero-ground-tiles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: flex-start;
+  font-size: 18px;
+  color: #4A5E2A;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-ground-tile { flex-shrink: 0; width: 28px; text-align: center; }
+
+.hero-ground-hint {
+  position: absolute;
+  right: 20px;
+  bottom: 8px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  color: #2C3A1E;
+}
+
+@media (max-width: 900px) {
+  .hero-body {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+}
+
+/* ==============================
+   FORM INPUTS
+   ============================== */
+.gb-input {
+  background-color: #E8F0C8;
+  border: 3px solid #2C3A1E;
+  box-shadow: inset 2px 2px 0 rgba(0,0,0,0.15);
+  padding: 8px 10px;
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  color: #2C3A1E;
+  outline: none;
+  width: 100%;
+}
+
+.gb-input:focus {
+  background-color: #fff;
+  border-color: #4A5E2A;
+}
+
+.gb-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: #4A5E2A;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* ==============================
+   PRESS-START FONT HELPER
+   ============================== */
+.press-start-font {
+  font-family: 'Press Start 2P', monospace;
+}

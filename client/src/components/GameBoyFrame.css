@@ -1,0 +1,382 @@
+/* Game Boy Frame styling */
+.gb-hardware-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  padding: 20px;
+  background-color: #1a1c15;
+}
+
+/* Console shell */
+.gb-console {
+  position: relative;
+  background-color: var(--gb-frame-bg);
+  border: 6px solid #4a5038;
+  border-bottom-width: 12px;
+  border-right-width: 10px;
+  border-radius: 12px 12px 60px 12px;
+  box-shadow: 
+    inset 4px 4px 0 var(--gb-frame-light),
+    inset -4px -4px 0 var(--gb-frame-dark),
+    10px 10px 0 rgba(0,0,0,0.6);
+  width: 420px;
+  height: 720px;
+  padding: 30px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Screen bezel box */
+.gb-screen-bezel {
+  background-color: #5c6258;
+  border: 4px solid #0f120e;
+  border-radius: 8px 8px 40px 8px;
+  box-shadow: inset 3px 3px 0 rgba(0,0,0,0.3);
+  width: 100%;
+  padding: 16px 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  margin-bottom: 24px;
+}
+
+/* Bezel Header Lines */
+.gb-screen-header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+.gb-screen-header-lines {
+  display: flex;
+  gap: 4px;
+  height: 4px;
+  margin-bottom: 4px;
+}
+
+.gb-line-blue {
+  flex: 1;
+  background-color: #3b5998;
+}
+
+.gb-line-red {
+  width: 100px;
+  background-color: #cc3333;
+}
+
+.gb-dot-matrix-label {
+  font-size: 7px;
+  color: #c0c5bd;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+/* LCD screen wrapper */
+.gb-screen-wrapper {
+  position: relative;
+  border: 4px solid #0f120e;
+  box-shadow: inset 4px 4px 0 rgba(0,0,0,0.4);
+  width: 100%;
+  aspect-ratio: 10 / 9; /* Retro resolution ratio */
+  background-color: var(--gb-medium);
+  box-sizing: border-box;
+  display: flex;
+}
+
+/* Battery LED indicator */
+.gb-battery-section {
+  position: absolute;
+  left: -15px;
+  top: 40%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.gb-battery-led {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #551111;
+  border: 1px solid #110000;
+}
+
+.gb-battery-led.active {
+  background-color: #ff3333;
+  box-shadow: 0 0 4px #ff3333;
+}
+
+.gb-battery-label {
+  font-size: 5px;
+  color: #c0c5bd;
+}
+
+/* Screen viewport content */
+.gb-screen {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: var(--gb-light);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Logo */
+.gb-nintendo-logo {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #31332a;
+  margin-bottom: 24px;
+  user-select: none;
+}
+
+.logo-nintendo {
+  font-family: Arial, sans-serif;
+  font-style: italic;
+  font-size: 14px;
+}
+
+.logo-gameboy {
+  font-size: 10px;
+  letter-spacing: -0.5px;
+}
+
+.logo-color {
+  font-size: 8px;
+  color: #6a1b9a;
+  font-weight: bold;
+}
+
+/* Controls section */
+.gb-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 10px;
+  margin-bottom: 30px;
+  box-sizing: border-box;
+}
+
+/* D-Pad */
+.gb-dpad {
+  position: relative;
+  width: 90px;
+  height: 90px;
+}
+
+.gb-dpad-btn {
+  position: absolute;
+  background-color: #2b2b2b;
+  border: 3px solid #111;
+  color: #111;
+  font-size: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.gb-dpad-btn:active {
+  background-color: #111;
+}
+
+.dpad-up {
+  top: 0;
+  left: 30px;
+  width: 30px;
+  height: 32px;
+  border-radius: 4px 4px 0 0;
+  border-bottom: none;
+}
+
+.dpad-right {
+  top: 30px;
+  right: 0;
+  width: 32px;
+  height: 30px;
+  border-radius: 0 4px 4px 0;
+  border-left: none;
+}
+
+.dpad-down {
+  bottom: 0;
+  left: 30px;
+  width: 30px;
+  height: 32px;
+  border-radius: 0 0 4px 4px;
+  border-top: none;
+}
+
+.dpad-left {
+  top: 30px;
+  left: 0;
+  width: 32px;
+  height: 30px;
+  border-radius: 4px 0 0 4px;
+  border-right: none;
+}
+
+.gb-dpad-center {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  width: 30px;
+  height: 30px;
+  background-color: #2b2b2b;
+  border: none;
+  z-index: 2;
+}
+
+/* A/B Action buttons */
+.gb-action-buttons {
+  display: flex;
+  gap: 16px;
+  transform: rotate(-15deg);
+  background-color: #7b8364;
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 2px solid #5c6248;
+  box-shadow: inset 2px 2px 0 rgba(0,0,0,0.2);
+}
+
+.gb-btn-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.gb-round-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #8b0022;
+  border: 2px solid #2b0008;
+  color: transparent;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 
+    2px 2px 0 rgba(0,0,0,0.4),
+    inset 1px 1px 0 rgba(255,255,255,0.2);
+}
+
+.gb-round-btn:active {
+  box-shadow: 1px 1px 0 rgba(0,0,0,0.4);
+  transform: translate(1px, 1px);
+  background-color: #6b001a;
+}
+
+.btn-label {
+  font-size: 7px;
+  color: #31332a;
+}
+
+/* Select & Start buttons */
+.gb-system-buttons {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 40px;
+  transform: rotate(-15deg);
+}
+
+.system-btn-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.gb-pill-btn {
+  width: 48px;
+  height: 12px;
+  border-radius: 6px;
+  background-color: #7b8364;
+  border: 2px solid #31332a;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 1px 2px 0 rgba(0,0,0,0.3);
+}
+
+.gb-pill-btn:active {
+  box-shadow: 0px 1px 0 rgba(0,0,0,0.3);
+  transform: translate(0px, 1px);
+  background-color: #6b7354;
+}
+
+.system-btn-label {
+  font-size: 7px;
+  color: #31332a;
+}
+
+/* Speakers */
+.gb-speaker-grill {
+  display: flex;
+  gap: 6px;
+  transform: rotate(-28deg);
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+}
+
+.grill-cut {
+  width: 6px;
+  height: 44px;
+  background-color: #31332a;
+  border-radius: 3px;
+  opacity: 0.8;
+  box-shadow: inset 1px 1px 0 rgba(0,0,0,0.5);
+}
+
+/* RESPONSIVE LAYOUT - MOBILE VIEWS */
+@media (max-width: 640px) {
+  .gb-hardware-container {
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .gb-console {
+    width: 100%;
+    height: 100vh;
+    border: none;
+    border-radius: 0;
+    padding: 10px;
+    justify-content: flex-start;
+  }
+
+  .gb-screen-bezel {
+    border-radius: 0;
+    border: none;
+    padding: 4px;
+    margin-bottom: 10px;
+    flex: 1;
+  }
+
+  .gb-screen-wrapper {
+    aspect-ratio: auto;
+    flex: 1;
+    height: 100%;
+  }
+
+  /* Hide physical hardware buttons on very small screens to maximize space, 
+     as we interact touch-based on screen. */
+  .gb-controls,
+  .gb-system-buttons,
+  .gb-speaker-grill,
+  .gb-nintendo-logo,
+  .gb-screen-header {
+    display: none;
+  }
+}

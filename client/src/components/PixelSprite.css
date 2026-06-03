@@ -1,0 +1,158 @@
+.sprite-container {
+  position: absolute;
+  bottom: 8px;
+  left: 20px;
+  width: 64px;
+  height: 64px;
+  animation: traverseScreen 14s linear infinite;
+  z-index: 5;
+}
+
+/* Static version — used in Hero profile card avatar */
+.sprite-container-static {
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+
+.sprite-container-static .sprite-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.sprite-container-static .frame-idle {
+  opacity: 1;
+}
+
+/* HUD version — used in top bar heading */
+.sprite-container-hud {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 64px;
+  height: 64px;
+  transform: scale(0.5);
+  transform-origin: top left;
+}
+
+.sprite-container-hud .sprite-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.sprite-container-hud .frame-idle {
+  opacity: 1;
+}
+
+.sprite-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+/* Cycle frame displays using opacity for full cross-browser support */
+.sprite-container .sprite-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: scale(0.65);
+  transform-origin: bottom center;
+}
+
+.sprite-container .frame-idle {
+  animation: showIdleOpacity 0.75s step-end infinite;
+}
+
+.sprite-container .frame-walk-1 {
+  animation: showWalk1Opacity 0.75s step-end infinite;
+}
+
+.sprite-container .frame-walk-2 {
+  animation: showWalk2Opacity 0.75s step-end infinite;
+}
+
+@keyframes showIdleOpacity {
+  0%, 33% { opacity: 1; }
+  33.01%, 100% { opacity: 0; }
+}
+
+@keyframes showWalk1Opacity {
+  0%, 33% { opacity: 0; }
+  33.01%, 66% { opacity: 1; }
+  66.01%, 100% { opacity: 0; }
+}
+
+@keyframes showWalk2Opacity {
+  0%, 66% { opacity: 0; }
+  66.01%, 100% { opacity: 1; }
+}
+
+/* Walk back and forth across the Game Boy screen layout */
+@keyframes traverseScreen {
+  0% {
+    transform: translateX(-40px) scaleX(1);
+  }
+  49% {
+    transform: translateX(280px) scaleX(1);
+  }
+  50% {
+    transform: translateX(280px) scaleX(-1); /* Face Left */
+  }
+  99% {
+    transform: translateX(-40px) scaleX(-1);
+  }
+  100% {
+    transform: translateX(-40px) scaleX(1); /* Face Right */
+  }
+}
+
+.sprite-container-walking {
+  position: fixed;
+  width: 64px;
+  height: 64px;
+  z-index: 9999;
+  pointer-events: none;
+  transition: left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), top 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Transition version — used for manual walking coordinates */
+.sprite-container-transition {
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+
+.sprite-container-transition .sprite-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.sprite-container-transition .frame-idle {
+  animation: showIdleOpacity 0.4s step-end infinite;
+}
+
+.sprite-container-transition .frame-walk-1 {
+  animation: showWalk1Opacity 0.4s step-end infinite;
+}
+
+.sprite-container-transition .frame-walk-2 {
+  animation: showWalk2Opacity 0.4s step-end infinite;
+}
