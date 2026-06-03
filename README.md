@@ -7,10 +7,10 @@ A interactive, retro GameBoy-themed pixel art personal portfolio. The applicatio
 ## 📸 Screenshots
 
 ### Home Console Screen
-![Home Console Screen](docs/home_screen.png)
+![Home Console Screen](docs/home_page.png)
 
 ### Character Record (About Page)
-![Character Record Screen](docs/about_screen.png)
+![Character Record Screen](docs/about_page.png)
 
 ---
 
