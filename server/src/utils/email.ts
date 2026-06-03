@@ -53,11 +53,19 @@ export const sendContactEmail = async (name: string, email: string, message: str
       `,
     };
 
-    await transporter.sendMail(mailOptions);
+    console.log(`✉️ Attempting SMTP dispatch...`);
+    // Race sendMail with a hard 5-second timeout
+    await Promise.race([
+      transporter.sendMail(mailOptions),
+      new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('SMTP sendMail hard timeout (5s)')), 5000)
+      )
+    ]);
+
     console.log(`✉️ Contact form email successfully dispatched from ${email} to ${receiverEmail}`);
     return true;
-  } catch (error) {
-    console.error('❌ Failed to dispatch contact form email:', error);
+  } catch (error: any) {
+    console.error('❌ Failed to dispatch contact form email:', error.message || error);
     return false;
   }
 };
