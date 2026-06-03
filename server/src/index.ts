@@ -21,7 +21,10 @@ app.set('trust proxy', 1);
 
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
+    // Dynamically allow Vercel previews and branch deployments for this project
+    const isVercelDomain = origin && origin.includes('my-pixel-portfolio') && origin.endsWith('.vercel.app');
+    
+    if (!origin || allowedOrigins.includes(origin) || isVercelDomain) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
