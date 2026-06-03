@@ -1,4 +1,5 @@
 import { Router, Request, Response } from 'express';
+import mongoose from 'mongoose';
 import { Contact } from '../models/Contact';
 import { contactRateLimiter } from '../middleware/rateLimit';
 import { sendContactEmail } from '../utils/email';
@@ -22,16 +23,23 @@ router.post('/', contactRateLimiter, async (req: Request, res: Response): Promis
       return;
     }
 
-    // Create and save database entry
-    const newContact = new Contact({
-      name,
-      email,
-      message
-    });
+    // Attempt to save to database (graceful — don't fail if DB is unavailable)
+    let savedContact = null;
+    const isDbConnected = mongoose.connection.readyState === 1; // 1 = connected
 
-    await newContact.save();
+    if (isDbConnected) {
+      try {
+        const newContact = new Contact({ name, email, message });
+        savedContact = await newContact.save();
+        console.log('Contact saved to database:', savedContact._id);
+      } catch (dbError) {
+        console.warn('Database save failed (non-critical):', dbError);
+      }
+    } else {
+      console.warn('MongoDB not connected (readyState:', mongoose.connection.readyState, '). Skipping DB save.');
+    }
 
-    // Dispatch email alert asynchronously (non-blocking for fast client response)
+    // Always dispatch email notification — this is the critical path
     sendContactEmail(name, email, message).catch((err) => {
       console.error('Background email dispatch failed:', err);
     });
@@ -39,9 +47,9 @@ router.post('/', contactRateLimiter, async (req: Request, res: Response): Promis
     res.status(201).json({
       message: 'Guild invitation successfully sent! Check quest log.',
       data: {
-        id: newContact._id,
-        name: newContact.name,
-        createdAt: newContact.createdAt
+        id: savedContact?._id || null,
+        name,
+        createdAt: savedContact?.createdAt || new Date()
       }
     });
   } catch (error) {

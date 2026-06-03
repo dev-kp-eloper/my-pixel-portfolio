@@ -4,8 +4,14 @@ export const contactRateLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 5, // Limit each IP to 5 contact submissions per windowMs
   message: {
-    message: 'Too many messages sent from this IP. Please try again after 15 minutes.'
+    message: 'Too many messages sent. Please try again after 15 minutes.'
   },
   standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+  // Use x-forwarded-for header to identify real client IPs behind Vercel/CDN proxies
+  keyGenerator: (req) => {
+    return (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim()
+      || req.ip
+      || 'unknown';
+  },
 });
