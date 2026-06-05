@@ -74,7 +74,7 @@ of 20+ professionals, including senior developers.` },
           <div style={{ fontFamily: 'VT323, monospace', fontSize: '20px', color: 'var(--gb-light)', lineHeight: 1.5 }}>
             I'm a Full-Stack Software Developer with 2+ years of hands-on experience delivering enterprise-grade web applications
             at Tata Consultancy Services (TCS). My primary theatre of operations is the BaNCS Core Banking platform,
-            where I build and maintain React.js/TypeScript frontends powering cross-border ISO 20022 payment processing
+            where I build and maintain React.js/TypeScript frontends and Spring Boot/Java backends powering cross-border ISO 20022 payment processing
             for global banking clients.
           </div>
           <div style={{ fontFamily: 'VT323, monospace', fontSize: '20px', color: 'var(--gb-dark)', lineHeight: 1.5, marginTop: '12px' }}>

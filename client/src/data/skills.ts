@@ -7,7 +7,7 @@ export interface RPGStat {
 export const rpgStats: RPGStat[] = [
   { label: 'STRENGTH', skillName: 'React.js', value: 90 },
   { label: 'AGILITY', skillName: 'TypeScript', value: 88 },
-  { label: 'MAGIC', skillName: 'Node.js', value: 80 },
+  { label: 'MAGIC', skillName: 'Spring Boot/Java', value: 85 },
   { label: 'DEFENSE', skillName: 'MongoDB/SQL', value: 75 },
   { label: 'SPEED', skillName: 'Docker/K8s', value: 70 },
   { label: 'WISDOM', skillName: 'ISO 20022', value: 90 },
@@ -17,7 +17,7 @@ export const rpgStats: RPGStat[] = [
 export const skillCategories = [
   {
     title: 'WEAPONS (Frameworks)',
-    skills: ['React.js', 'Redux', 'Zustand', 'ReactFlow', 'TailwindCSS']
+    skills: ['React.js', 'Spring Boot', 'Redux', 'Zustand', 'ReactFlow', 'GraphQL', 'TailwindCSS']
   },
   {
     title: 'SPELLS (Languages)',
@@ -25,7 +25,7 @@ export const skillCategories = [
   },
   {
     title: 'EQUIPMENT (Tools)',
-    skills: ['Git', 'Docker', 'Kubernetes', 'Jenkins', 'Postman', 'MongoDB', 'MySQL']
+    skills: ['Git', 'Docker', 'Kubernetes', 'PostgreSQL', 'Redis', 'MongoDB', 'MySQL', 'Jenkins', 'Postman']
   },
   {
     title: 'PASSIVE SKILLS (Domain)',

@@ -51,7 +51,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, hideAvatar = false }) =>
         <div className="hero-intro pixel-box-light">
           <div className="hero-intro-label">CHARACTER DESCRIPTION:</div>
           <p className="hero-intro-text">
-            Full-Stack Software Developer specializing in React.js/TypeScript and enterprise
+            Full-Stack Software Developer specializing in React.js/TypeScript and Spring Boot/Java enterprise
             banking systems at TCS BaNCS. Delivered 5+ ISO 20022 cross-border payment
             modules powering international finance workflows. Reduced build time 40% and
             API overhead 30% through targeted optimization quests.
@@ -64,6 +64,8 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, hideAvatar = false }) =>
           <div className="hero-tags">
             <span className="hero-tag">React.js</span>
             <span className="hero-tag">TypeScript</span>
+            <span className="hero-tag">Java</span>
+            <span className="hero-tag">Spring Boot</span>
             <span className="hero-tag">Node.js</span>
             <span className="hero-tag">MongoDB</span>
             <span className="hero-tag">ISO 20022</span>

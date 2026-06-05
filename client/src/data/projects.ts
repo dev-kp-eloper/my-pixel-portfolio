@@ -14,6 +14,32 @@ export interface Project {
 
 export const primaryProjects: Project[] = [
   {
+    id: 'system-design-studio',
+    name: 'System Design Studio',
+    rarity: 'LEGENDARY',
+    icon: '📐',
+    stack: ['React', 'TypeScript', 'ReactFlow', 'Zustand', 'Spring Boot', 'GraphQL', 'PostgreSQL', 'Redis', 'Docker', 'Kubernetes', 'GitHub Actions'],
+    liveUrl: 'https://systemdesign-studio.vercel.app/',
+    githubUrl: 'https://github.com/dev-kp-eloper/System-Design-Studio',
+    xp: 9999,
+    shortSummary: 'An interactive system design canvas featuring drag-and-drop components, GraphQL state serialization, and a Java Spring Boot rule engine.',
+    detailedDescription: `System Design Studio is an advanced visual modeling suite designed to build, review, and validate software architecture diagrams. 
+    
+    The frontend features an interactive system design canvas built using ReactFlow and Zustand, supporting 12+ architectural component types. It integrates GraphQL for canvas state serialization, reducing payload sizes by 35% and dropping load latency under 50ms.
+    
+    The backend is built with a Spring Boot Java review engine implementing 15+ deterministic rules to validate system architectural compliance. It also includes asynchronous AI analysis pipelines to parse raw LLM responses, extracting structural bottlenecks under 50ms.
+    
+    The application includes 25+ tests written using JUnit 5, MockMvc, and React Testing Library, achieving 90%+ code coverage across the API and user interface. It is fully containerized and orchestrated using Docker and Kubernetes, with automated CI/CD builds verified via GitHub Actions.`,
+    impactMetrics: [
+      'Architected interactive system design canvas using ReactFlow + Zustand for 12+ component types.',
+      'Integrated GraphQL for canvas state serialization, reducing payload sizes by 35% and load latency under 50ms.',
+      'Developed Spring Boot review engine implementing 15+ deterministic rules to validate system architectural compliance.',
+      'Engineered asynchronous AI analysis pipelines to parse raw LLM responses, extracting structural bottlenecks under 50ms.',
+      'Wrote 25+ tests using JUnit 5, MockMvc, and React Testing Library, achieving 90%+ coverage across API and UI.',
+      'Orchestrated microservices using Docker and Kubernetes, automating testing and build verification via GitHub Actions.'
+    ]
+  },
+  {
     id: 'pipeline-builder',
     name: 'Pipeline Builder',
     rarity: 'LEGENDARY',
